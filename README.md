@@ -1,1 +1,2 @@
-# php_blogd
+# php_blog_test
+PHP,MySQL

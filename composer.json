@@ -1,0 +1,28 @@
+{
+    "name": "victo/php-blog",
+    "description": "Blog",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Victo\\PhpBlog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "виктор романов",
+            "email": "b.ivanov@testemail.test"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.5",
+        "twig/twig": "^3.3",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "database\\": "src/"
+        }
+    }
+}

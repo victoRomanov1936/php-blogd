@@ -1,0 +1,71 @@
+{% extends "base.twig" %}
+{% block body %}
+    <div class="container mb-3">
+            <h1>{{ article.title }}</h1>
+        <img src={{ article.image_path }} class="img-fluid" alt="...">
+        <p>{{ article.content }}</p>
+        <form method="post" action="/del-art" >
+            <div class="form-group">
+                <input type="hidden" name="id" value="{{ article.id }}" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+        <form method="post" action="/edit" >
+            <div class="form-group">
+                <input type="hidden" name="id" value="{{ article.id }}" />
+                <input type="hidden" name="content" value="{{ article.content }}" />
+                <input type="hidden" name="title" value="{{ article.title }}" />
+                <input type="hidden" name="url" value="{{ article.url }}" />
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    <div class="container mt-3">
+        <div id = "comments">
+            <h3>Comments</h3>
+            {% for com in comments %}
+            <div class="card mb-3 " >
+                <div class="row g-0">
+                    <div class="col-md-2 mt-4">
+                        <img src="https://dummyimage.com/200X200/89a0a1/ffffff" class="img-fluid" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ com.name }}</h5>
+                            <p class="card-text">{{ com.content }}</p>
+                            <p class="card-text "><small class="text-muted ">{{ com.date|date("Y-m-d") }}</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10 col-md-8"></div>
+                    <div class="col-6 col-md-4">
+
+                        <form method="post" action="/edit-com" >
+                            <div class="form-group">
+                                <input type="hidden" name="id" value="{{ com.id }}" />
+                                <input type="hidden" name="content" value="{{ com.content }}" />
+                                <input type="hidden" name="page" value="{{ article.url }}" />
+                                <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                            </div>
+                        </form>
+                        <form method="post" action="/del-com" >
+                            <div class="form-group">
+                                <input type="hidden" name="del" value="{{ com.id}}" />
+                                <input type="hidden" name="page" value="{{ article.url }}" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
